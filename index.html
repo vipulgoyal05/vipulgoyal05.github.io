@@ -3,61 +3,142 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Vipul Goyal | Research Portfolio</title>
-  <meta name="description" content="Research portfolio of Vipul Goyal, exploring neuroscience, stem cells, neuroregeneration, and disease biology." />
+  <meta name="description" content="Vipul Goyal's research portfolio: neuroscience, neuroregeneration, stem cells, and disease biology." />
   <meta name="author" content="Vipul Goyal" />
   <meta name="theme-color" content="#071410" />
 
+  <!-- Open Graph / social preview. Add og-preview.png to the repository root. -->
   <meta property="og:title" content="Vipul Goyal | Research Portfolio" />
   <meta property="og:description" content="Neuroscience, cellular repair, and disease biology." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://vipulgoyal05.github.io/" />
+  <meta property="og:image" content="https://vipulgoyal05.github.io/og-preview.png" />
+  <meta property="og:image:alt" content="Vipul Goyal research portfolio" />
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23071410'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='27' font-weight='bold' fill='%2397f3c5'%3EVG%3C/text%3E%3C/svg%3E" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Vipul Goyal | Research Portfolio" />
+  <meta name="twitter:description" content="Neuroscience, cellular repair, and disease biology." />
+  <meta name="twitter:image" content="https://vipulgoyal05.github.io/og-preview.png" />
+
+  <!-- VG SVG favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23071410'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='27' font-weight='bold' fill='%2397f3c5'%3EVG%3C/text%3E%3C/svg%3E" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
+    /* -------------------------------------------------------
+       1. Theme variables and consistent spacing scale
+       ------------------------------------------------------- */
+
     :root {
+      color-scheme: dark;
+
       --bg: #071410;
       --surface: #10251c;
-      --surface-hover: #173326;
-      --border: rgba(151, 243, 197, 0.20);
-      --border-strong: rgba(151, 243, 197, 0.38);
-      --text: #edf7f0;
-      --body: #c2d2c7;
-      --muted: #a7bdb0;
+      --surface-raised: #142c21;
+      --border: #294337;
+      --border-strong: #3b5948;
+
+      --text: #edf5ef;
+      --body: #c7d5cc;
+      --secondary: #aebfb4;
+      --label: #d1ddd4;
+
       --accent: #97f3c5;
-      --accent-soft: #c2f9dc;
-      --mono: "DM Mono", monospace;
+      --accent-contrast: #071410;
+
       --sans: "Manrope", sans-serif;
-      --max: 1120px;
+      --mono: "DM Mono", monospace;
+
+      --space-1: 8px;
+      --space-2: 16px;
+      --space-3: 24px;
+      --space-4: 32px;
+      --space-5: 40px;
+      --space-6: 48px;
+      --space-7: 64px;
+      --space-8: 80px;
+      --section-space: 96px;
+
+      --max-width: 1120px;
+      --radius: 14px;
+      --focus-ring: 3px solid var(--accent);
     }
 
-    * {
+    /* Light theme */
+    :root[data-theme="light"] {
+      color-scheme: light;
+
+      --bg: #f5f7f3;
+      --surface: #ffffff;
+      --surface-raised: #edf2ec;
+      --border: #d2ddd3;
+      --border-strong: #aebfb1;
+
+      --text: #183528;
+      --body: #354f40;
+      --secondary: #4d6656;
+      --label: #294737;
+
+      --accent: #176b43;
+      --accent-contrast: #ffffff;
+    }
+
+    /* System preference is used until the visitor chooses a theme. */
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme]) {
+        color-scheme: light;
+
+        --bg: #f5f7f3;
+        --surface: #ffffff;
+        --surface-raised: #edf2ec;
+        --border: #d2ddd3;
+        --border-strong: #aebfb1;
+
+        --text: #183528;
+        --body: #354f40;
+        --secondary: #4d6656;
+        --label: #294737;
+
+        --accent: #176b43;
+        --accent-contrast: #ffffff;
+      }
+    }
+
+    /* -------------------------------------------------------
+       2. Base styles and accessibility
+       ------------------------------------------------------- */
+
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 90px;
+      scroll-padding-top: 100px;
     }
 
     body {
-      background:
-        radial-gradient(circle at 80% 5%, rgba(45, 110, 72, 0.18), transparent 32%),
-        radial-gradient(circle at 10% 45%, rgba(27, 72, 52, 0.12), transparent 28%),
-        var(--bg);
+      margin: 0;
+      background: var(--bg);
       color: var(--text);
       font-family: var(--sans);
-      line-height: 1.75;
+      font-size: 16px;
+      line-height: 1.65;
       overflow-x: hidden;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    img,
+    svg {
+      max-width: 100%;
     }
 
     a {
@@ -65,73 +146,89 @@
       text-decoration: none;
     }
 
+    button {
+      font: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 4px;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: var(--accent-contrast);
+    }
+
     .container {
-      width: min(var(--max), calc(100% - 48px));
-      margin: 0 auto;
+      width: min(var(--max-width), calc(100% - 48px));
+      margin-inline: auto;
     }
 
     .mono {
       font-family: var(--mono);
     }
 
-    .muted {
-      color: var(--muted);
-    }
-
-    .accent {
-      color: var(--accent);
-    }
-
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      color: var(--accent);
+      gap: 12px;
+      color: var(--label);
       font-family: var(--mono);
-      font-size: 0.82rem;
-      letter-spacing: 0.08em;
+      font-size: 0.8125rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
     .eyebrow::before {
       content: "";
-      width: 22px;
+      width: 20px;
       height: 1px;
-      background: var(--accent);
+      background: currentColor;
+      opacity: 0.7;
     }
 
     .section {
-      padding: 95px 0;
-      border-top: 1px solid rgba(151, 243, 197, 0.09);
+      padding-block: var(--section-space);
+      border-top: 1px solid var(--border);
     }
 
     .section-heading {
-      margin-bottom: 40px;
+      margin-bottom: var(--space-5);
     }
 
     .section-heading h2 {
-      margin-top: 12px;
-      font-size: clamp(2rem, 4vw, 3rem);
+      margin: var(--space-2) 0 0;
+      max-width: 760px;
+      font-size: clamp(2rem, 4vw, 3.1rem);
       line-height: 1.18;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.055em;
     }
 
     .section-heading p {
-      max-width: 680px;
-      margin-top: 16px;
+      max-width: 66ch;
+      margin: var(--space-2) 0 0;
       color: var(--body);
-      font-size: 1rem;
+      line-height: 1.7;
     }
 
-    /* Navigation */
+    .body-copy {
+      max-width: 68ch;
+      color: var(--body);
+      line-height: 1.7;
+    }
+
+    /* -------------------------------------------------------
+       3. Navigation
+       ------------------------------------------------------- */
 
     .nav-wrap {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(7, 20, 16, 0.94);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(151, 243, 197, 0.12);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
     }
 
     nav {
@@ -139,11 +236,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: var(--space-3);
     }
 
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 12px;
       font-size: 0.95rem;
@@ -158,17 +255,23 @@
       place-items: center;
       border: 1px solid var(--border-strong);
       border-radius: 10px;
-      color: var(--accent);
-      background: rgba(151, 243, 197, 0.07);
       font-family: var(--mono);
       font-size: 0.8rem;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 22px;
       list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
     .nav-links a {
@@ -177,37 +280,61 @@
       transition: color 0.2s ease;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .nav-links a[aria-current="location"] {
       color: var(--accent);
     }
 
-    .nav-links .nav-contact {
-      padding: 8px 14px;
-      border: 1px solid var(--border-strong);
-      border-radius: 999px;
-      color: var(--accent);
+    .nav-links a[aria-current="location"] {
+      font-weight: 700;
     }
 
-    /* Hero */
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .theme-toggle svg {
+      width: 19px;
+      height: 19px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* -------------------------------------------------------
+       4. Hero
+       ------------------------------------------------------- */
 
     .hero {
-      min-height: 660px;
+      min-height: 650px;
       display: flex;
       align-items: center;
-      padding: 90px 0 100px;
+      padding-block: var(--space-8);
       overflow: hidden;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
       align-items: center;
-      gap: 55px;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
+      gap: var(--space-6);
     }
 
     .hero-status {
@@ -215,25 +342,24 @@
       align-items: center;
       gap: 10px;
       padding: 8px 13px;
-      margin-bottom: 27px;
+      margin-bottom: var(--space-4);
       border: 1px solid var(--border);
       border-radius: 999px;
-      background: rgba(151, 243, 197, 0.05);
       color: var(--body);
       font-family: var(--mono);
-      font-size: 0.75rem;
+      font-size: 0.78rem;
     }
 
     .status-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 12px rgba(151, 243, 197, 0.6);
+      background: var(--secondary);
     }
 
     .hero h1 {
-      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      margin: 0;
+      font-size: clamp(3.4rem, 8vw, 6.5rem);
       line-height: 0.98;
       letter-spacing: -0.075em;
       font-weight: 800;
@@ -245,37 +371,36 @@
     }
 
     .hero-subtitle {
-      max-width: 640px;
-      margin-top: 28px;
+      max-width: 62ch;
+      margin-top: var(--space-3);
       color: var(--body);
       font-size: clamp(1rem, 2vw, 1.15rem);
-      line-height: 1.85;
+      line-height: 1.7;
     }
 
     .hero-subtitle strong {
       color: var(--text);
-      font-weight: 700;
     }
 
     .currently-working {
-      max-width: 640px;
-      margin-top: 24px;
-      padding: 16px 19px;
-      border-left: 2px solid var(--accent);
-      background: linear-gradient(90deg, rgba(151, 243, 197, 0.08), transparent);
+      max-width: 64ch;
+      margin-top: var(--space-3);
+      padding: 14px 18px;
+      border-left: 2px solid var(--border-strong);
+      background: var(--surface);
       color: var(--body);
       font-size: 0.92rem;
     }
 
     .currently-working strong {
-      color: var(--accent);
+      color: var(--text);
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 13px;
-      margin-top: 30px;
+      gap: 12px;
+      margin-top: var(--space-4);
     }
 
     .button {
@@ -283,65 +408,51 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 13px 20px;
+      min-height: 46px;
+      padding: 12px 20px;
       border: 1px solid var(--border-strong);
       border-radius: 8px;
-      font-size: 0.87rem;
+      color: var(--text);
+      background: var(--surface);
+      font-size: 0.88rem;
       font-weight: 700;
-      transition: transform 0.2s ease, background 0.2s ease;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
 
     .button:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      border-color: var(--accent);
     }
 
     .button-primary {
       background: var(--accent);
-      color: #071410;
       border-color: var(--accent);
+      color: var(--accent-contrast);
     }
 
     .button-primary:hover {
-      background: var(--accent-soft);
+      background: var(--accent);
     }
 
-    .button-secondary {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .button-secondary:hover {
-      background: rgba(151, 243, 197, 0.09);
-    }
-
-    /* Branching neuron illustration */
-
+    /* Biological neuron illustration: soma, dendrites, axon */
     .hero-visual {
       position: relative;
-      min-height: 400px;
+      min-height: 390px;
       display: grid;
       place-items: center;
     }
 
-    .visual-glow {
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: rgba(71, 179, 119, 0.14);
-      filter: blur(55px);
-    }
-
     .neuron-art {
-      position: relative;
       width: 100%;
-      max-width: 420px;
-      animation: float 8s ease-in-out infinite;
+      max-width: 430px;
+      overflow: visible;
     }
 
-    .neuron-art .branch {
+    .neuron-art .dendrite,
+    .neuron-art .axon,
+    .neuron-art .axon-branch {
       fill: none;
-      stroke: rgba(151, 243, 197, 0.72);
+      stroke: var(--border-strong);
       stroke-width: 2;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -349,61 +460,63 @@
 
     .neuron-art .fine-branch {
       fill: none;
-      stroke: rgba(151, 243, 197, 0.4);
+      stroke: var(--secondary);
       stroke-width: 1.4;
       stroke-linecap: round;
     }
 
-    .neuron-art .cell {
-      fill: rgba(151, 243, 197, 0.12);
-      stroke: var(--accent);
-      stroke-width: 1.6;
+    .neuron-art .soma {
+      fill: var(--surface-raised);
+      stroke: var(--border-strong);
+      stroke-width: 2;
     }
 
     .neuron-art .nucleus {
-      fill: var(--accent);
+      fill: var(--border-strong);
     }
 
-    .neuron-art .label {
-      fill: #c2f9dc;
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 1px;
+    .neuron-art .terminal {
+      fill: var(--surface);
+      stroke: var(--border-strong);
+      stroke-width: 1.6;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    .neuron-art .myelin {
+      fill: var(--surface-raised);
+      stroke: var(--border);
+      stroke-width: 1.5;
     }
 
-    /* About */
+    /* -------------------------------------------------------
+       5. About
+       ------------------------------------------------------- */
 
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 55px;
+      gap: var(--space-6);
       align-items: start;
     }
 
     .about-copy p {
+      max-width: 68ch;
+      margin: 0 0 var(--space-2);
       color: var(--body);
-      margin-bottom: 18px;
-      font-size: 1rem;
+      line-height: 1.7;
     }
 
     .about-copy strong {
       color: var(--text);
     }
 
-    .focus-card {
-      padding: 28px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
+    .focus-panel {
+      padding: var(--space-4);
+      border-left: 2px solid var(--border-strong);
       background: var(--surface);
     }
 
-    .focus-card h3 {
-      margin-bottom: 20px;
+    .focus-panel h3 {
+      margin: 0 0 var(--space-3);
       font-size: 1rem;
     }
 
@@ -411,23 +524,26 @@
       display: grid;
       gap: 14px;
       list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
     .focus-list li {
       display: flex;
-      gap: 13px;
+      gap: 12px;
       color: var(--body);
       font-size: 0.92rem;
     }
 
     .focus-list li::before {
       content: "↗";
-      color: var(--accent);
-      font-family: var(--mono);
+      color: var(--secondary);
       flex-shrink: 0;
     }
 
-    /* Research cards */
+    /* -------------------------------------------------------
+       6. Research interests - cards retained only here
+       ------------------------------------------------------- */
 
     .research-grid {
       display: grid;
@@ -437,303 +553,386 @@
 
     .research-card {
       min-height: 300px;
-      padding: 27px;
+      padding: 28px;
       border: 1px solid var(--border);
-      border-radius: 13px;
+      border-radius: var(--radius);
       background: var(--surface);
-      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
     .research-card:hover {
-      transform: translateY(-5px);
-      background: var(--surface-hover);
+      transform: translateY(-3px);
       border-color: var(--border-strong);
     }
 
     .card-label {
-      color: var(--accent);
+      color: var(--label);
       font-family: var(--mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.07em;
-      line-height: 1.7;
+      font-size: 0.8125rem;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
     }
 
     .research-card h3 {
-      margin-top: 24px;
-      font-size: 1.27rem;
+      margin: var(--space-3) 0 0;
+      font-size: 1.25rem;
       line-height: 1.4;
       letter-spacing: -0.03em;
     }
 
     .research-card p {
-      margin-top: 13px;
+      margin-top: 14px;
       color: var(--body);
-      font-size: 0.9rem;
-      line-height: 1.8;
+      font-size: 0.91rem;
+      line-height: 1.7;
     }
 
     .research-card .evidence {
       margin-top: 18px;
-      padding-top: 15px;
+      padding-top: 14px;
       border-top: 1px solid var(--border);
-      color: var(--accent-soft);
-      font-size: 0.82rem;
+      color: var(--secondary);
+      font-size: 0.83rem;
     }
 
-    /* Experience */
+    /* -------------------------------------------------------
+       7. Experience - vertical timeline
+       ------------------------------------------------------- */
 
-    .experience-list {
+    .timeline {
+      position: relative;
       display: grid;
-      gap: 18px;
+      gap: var(--space-5);
+      margin-left: 8px;
     }
 
-    .experience-card {
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      bottom: 8px;
+      left: 204px;
+      width: 1px;
+      background: var(--border-strong);
+    }
+
+    .timeline-item {
+      position: relative;
       display: grid;
-      grid-template-columns: 185px 1fr;
-      gap: 28px;
-      padding: 28px;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      background: var(--surface);
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: var(--space-4);
     }
 
-    .experience-meta {
-      color: var(--muted);
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 200px;
+      width: 9px;
+      height: 9px;
+      border: 2px solid var(--border-strong);
+      border-radius: 50%;
+      background: var(--bg);
+    }
+
+    .timeline-meta {
+      padding-right: var(--space-3);
+      color: var(--secondary);
       font-family: var(--mono);
-      font-size: 0.78rem;
-      line-height: 1.9;
+      font-size: 0.8rem;
+      line-height: 1.8;
     }
 
-    .experience-content h3 {
-      font-size: 1.16rem;
+    .timeline-content {
+      padding-left: var(--space-3);
+    }
+
+    .timeline-content h3 {
+      margin: 0;
+      font-size: 1.18rem;
       letter-spacing: -0.025em;
     }
 
-    .experience-place {
-      margin-top: 5px;
-      color: var(--accent);
-      font-size: 0.87rem;
-    }
-
-    .experience-content p {
-      margin-top: 13px;
-      color: var(--body);
-      font-size: 0.92rem;
-    }
-
-    .experience-content ul {
-      margin: 13px 0 0 18px;
-      color: var(--body);
+    .timeline-place {
+      margin-top: 4px;
+      color: var(--secondary);
       font-size: 0.9rem;
     }
 
-    .experience-content li {
+    .timeline-content p {
+      max-width: 68ch;
+      margin-top: 13px;
+      color: var(--body);
+      line-height: 1.7;
+    }
+
+    .timeline-content ul {
+      max-width: 68ch;
+      margin: 12px 0 0 18px;
+      color: var(--body);
+      font-size: 0.91rem;
+    }
+
+    .timeline-content li {
       margin-top: 7px;
       padding-left: 4px;
     }
 
-    /* Project */
+    /* -------------------------------------------------------
+       8. Featured project - text and media side by side
+       ------------------------------------------------------- */
 
-    .project-card {
-      padding: 40px;
-      border: 1px solid var(--border-strong);
-      border-radius: 18px;
-      background:
-        radial-gradient(circle at 100% 0%, rgba(91, 180, 126, 0.14), transparent 35%),
-        linear-gradient(135deg, #122b1f, #091910);
+    .project-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: var(--space-5);
+      align-items: stretch;
+      padding: var(--space-5);
+      border: 1px solid var(--border);
+      background: var(--surface);
     }
 
-    .project-topline {
+    .project-copy {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .project-tag {
-      padding: 7px 11px;
-      border: 1px solid var(--border-strong);
-      border-radius: 999px;
-      color: var(--accent);
+      color: var(--label);
       font-family: var(--mono);
-      font-size: 0.75rem;
+      font-size: 0.8125rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
 
-    .project-card h3 {
-      max-width: 800px;
-      margin-top: 27px;
-      font-size: clamp(1.8rem, 4vw, 3rem);
+    .project-copy h3 {
+      margin: var(--space-3) 0 0;
+      font-size: clamp(1.7rem, 3.5vw, 2.7rem);
       line-height: 1.2;
       letter-spacing: -0.05em;
     }
 
-    .project-description {
-      max-width: 780px;
-      margin-top: 19px;
+    .project-copy > p {
+      max-width: 65ch;
+      margin-top: var(--space-3);
       color: var(--body);
-      font-size: 0.98rem;
+      line-height: 1.7;
     }
 
-    .project-details {
+    .project-facts {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 32px;
+      gap: 12px;
+      margin-top: var(--space-4);
     }
 
-    .project-detail {
-      padding: 18px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: rgba(0, 0, 0, 0.14);
+    .project-fact {
+      display: grid;
+      grid-template-columns: 125px 1fr;
+      gap: 12px;
+      font-size: 0.88rem;
     }
 
-    .project-detail span {
-      display: block;
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+    .project-fact span {
+      color: var(--secondary);
     }
 
-    .project-detail strong {
-      display: block;
-      margin-top: 8px;
+    .project-fact strong {
       color: var(--text);
-      font-size: 0.92rem;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .project-note {
-      margin-top: 22px;
-      color: var(--body);
-      font-size: 0.83rem;
+      margin-top: auto;
+      padding-top: var(--space-3);
+      color: var(--secondary);
+      font-size: 0.82rem;
     }
 
-    /* Toolkit */
-
-    .toolkit-grid {
+    .project-media {
+      min-height: 330px;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
+      place-items: center;
+      padding: var(--space-3);
+      border: 1px dashed var(--border-strong);
+      background: var(--surface-raised);
+      color: var(--secondary);
+      text-align: center;
     }
 
-    .toolkit-card {
-      padding: 27px;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      background: var(--surface);
+    .project-media-inner {
+      max-width: 240px;
     }
 
-    .toolkit-card h3 {
-      font-size: 1rem;
+    .project-media svg {
+      width: 54px;
+      height: 54px;
+      margin-bottom: var(--space-2);
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
-    .toolkit-card p {
-      margin-top: 9px;
-      color: var(--body);
-      font-size: 0.87rem;
+    .project-media strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.9rem;
     }
 
-    .tag-list {
+    .project-media p {
+      margin-top: 8px;
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    /* -------------------------------------------------------
+       9. Technical toolkit - compact chips, no cards
+       ------------------------------------------------------- */
+
+    .toolkit-groups {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .toolkit-group {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: start;
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toolkit-group h3 {
+      margin: 0;
+      color: var(--text);
+      font-size: 0.98rem;
+    }
+
+    .toolkit-group p {
+      margin-top: 5px;
+      color: var(--secondary);
+      font-size: 0.83rem;
+      line-height: 1.6;
+    }
+
+    .chip-list {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 18px;
       list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
-    .tag-list li {
-      padding: 7px 10px;
+    .chip-list li {
+      padding: 6px 11px;
       border: 1px solid var(--border);
-      border-radius: 6px;
-      color: #d2e2d7;
-      background: rgba(151, 243, 197, 0.05);
+      border-radius: 999px;
+      color: var(--body);
+      background: var(--surface);
       font-family: var(--mono);
-      font-size: 0.75rem;
+      font-size: 0.78rem;
+      line-height: 1.5;
     }
+
+    /* -------------------------------------------------------
+       10. Training - simple list with arrows aligned right
+       ------------------------------------------------------- */
 
     .training-list {
-      display: grid;
-      gap: 13px;
-      margin-top: 18px;
+      max-width: 850px;
       list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--border);
     }
 
     .training-list li {
       display: flex;
-      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
       color: var(--body);
-      font-size: 0.88rem;
+      font-size: 0.93rem;
     }
 
-    .training-list li::before {
-      content: "↗";
+    .training-list li span {
+      max-width: 68ch;
+    }
+
+    .training-list li a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      color: var(--secondary);
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .training-list li a:hover {
       color: var(--accent);
-      font-family: var(--mono);
+      transform: translateX(3px);
     }
 
-    /* Beyond the lab */
+    /* -------------------------------------------------------
+       11. Beyond the lab
+       ------------------------------------------------------- */
 
-    .beyond-grid {
+    .beyond-list {
+      max-width: 850px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .beyond-list li {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      grid-template-columns: 190px 1fr;
+      gap: var(--space-3);
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    .beyond-card {
-      padding: 30px;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      background: var(--surface);
-    }
-
-    .beyond-card h3 {
-      font-size: 1.1rem;
-    }
-
-    .beyond-card p {
-      margin-top: 13px;
-      color: var(--body);
+    .beyond-list strong {
+      color: var(--text);
       font-size: 0.92rem;
     }
 
-    .beyond-label {
-      display: block;
-      margin-top: 20px;
-      color: var(--accent);
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+    .beyond-list p {
+      margin: 0;
+      color: var(--body);
+      font-size: 0.9rem;
+      line-height: 1.7;
     }
 
-    /* Contact */
+    /* -------------------------------------------------------
+       12. Contact and footer
+       ------------------------------------------------------- */
 
     .contact-panel {
-      padding: 45px;
-      border: 1px solid var(--border-strong);
-      border-radius: 18px;
-      background:
-        radial-gradient(circle at 100% 0%, rgba(91, 180, 126, 0.13), transparent 40%),
-        var(--surface);
+      padding: var(--space-5);
+      border: 1px solid var(--border);
+      background: var(--surface);
     }
 
     .contact-panel h2 {
-      margin-top: 15px;
+      margin-top: var(--space-2);
       font-size: clamp(2rem, 5vw, 3.7rem);
       line-height: 1.15;
       letter-spacing: -0.06em;
     }
 
     .contact-panel p {
-      max-width: 620px;
-      margin-top: 18px;
+      max-width: 65ch;
+      margin-top: var(--space-3);
       color: var(--body);
     }
 
@@ -741,35 +940,29 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 28px;
+      margin-top: var(--space-4);
     }
 
     .contact-link {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      padding: 11px 15px;
+      padding: 10px 14px;
       border: 1px solid var(--border);
       border-radius: 8px;
-      color: var(--text);
+      color: var(--body);
       font-size: 0.87rem;
-      transition: background 0.2s ease, border-color 0.2s ease;
+      transition: border-color 0.2s ease, color 0.2s ease;
     }
 
     .contact-link:hover {
-      border-color: var(--border-strong);
-      background: rgba(151, 243, 197, 0.07);
-    }
-
-    .contact-link span {
+      border-color: var(--accent);
       color: var(--accent);
     }
 
-    /* Footer */
-
     footer {
-      padding: 30px 0;
-      border-top: 1px solid rgba(151, 243, 197, 0.09);
+      padding: var(--space-4) 0;
+      border-top: 1px solid var(--border);
     }
 
     .footer-inner {
@@ -777,34 +970,66 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: var(--space-3);
     }
 
-    .footer-copy {
-      color: var(--body);
+    .footer-main {
+      display: grid;
+      gap: 6px;
+    }
+
+    .footer-copy,
+    .footer-updated {
+      color: var(--secondary);
       font-size: 0.8rem;
     }
 
-    .footer-focus {
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 0.75rem;
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
     }
 
-    /* Responsive */
+    .footer-links a {
+      color: var(--body);
+      font-size: 0.83rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    /* -------------------------------------------------------
+       13. Scroll reveal - only enabled when JS and motion allow
+       ------------------------------------------------------- */
+
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .js .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* -------------------------------------------------------
+       14. Responsive layout
+       ------------------------------------------------------- */
 
     @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+      :root {
+        --section-space: 80px;
       }
 
-      .hero {
-        padding-top: 75px;
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
       }
 
       .hero-visual {
-        min-height: 290px;
+        min-height: 300px;
       }
 
       .neuron-art {
@@ -813,22 +1038,45 @@
 
       .about-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: var(--space-4);
       }
 
       .research-grid {
         grid-template-columns: 1fr 1fr;
       }
 
-      .experience-card {
+      .timeline::before {
+        left: 174px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 150px minmax(0, 1fr);
+      }
+
+      .timeline-item::before {
+        left: 170px;
+      }
+
+      .toolkit-group {
+        grid-template-columns: 180px minmax(0, 1fr);
+      }
+
+      .project-layout {
         grid-template-columns: 1fr;
-        gap: 12px;
+      }
+
+      .project-media {
+        min-height: 260px;
       }
     }
 
     @media (max-width: 650px) {
       .container {
-        width: min(100% - 32px, var(--max));
+        width: min(100% - 32px, var(--max-width));
+      }
+
+      :root {
+        --section-space: 64px;
       }
 
       nav {
@@ -839,8 +1087,12 @@
         font-size: 0.85rem;
       }
 
+      .nav-right {
+        gap: 12px;
+      }
+
       .nav-links {
-        gap: 14px;
+        gap: 12px;
       }
 
       .nav-links li:nth-child(2),
@@ -850,13 +1102,9 @@
         display: none;
       }
 
-      .nav-links .nav-contact {
-        padding: 8px 12px;
-      }
-
       .hero {
         min-height: auto;
-        padding: 70px 0 80px;
+        padding-block: 64px;
       }
 
       .hero h1 {
@@ -864,16 +1112,10 @@
       }
 
       .hero-visual {
-        min-height: 240px;
+        min-height: 250px;
       }
 
-      .section {
-        padding: 72px 0;
-      }
-
-      .research-grid,
-      .toolkit-grid,
-      .beyond-grid {
+      .research-grid {
         grid-template-columns: 1fr;
       }
 
@@ -881,16 +1123,55 @@
         min-height: auto;
       }
 
-      .project-card {
-        padding: 25px;
+      /* Timeline stacks on mobile */
+      .timeline {
+        margin-left: 0;
+        padding-left: 22px;
+        gap: var(--space-4);
       }
 
-      .project-details {
+      .timeline::before {
+        left: 4px;
+      }
+
+      .timeline-item {
         grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .timeline-item::before {
+        left: 0;
+      }
+
+      .timeline-meta {
+        padding: 0;
+        font-size: 0.78rem;
+      }
+
+      .timeline-content {
+        padding-left: 0;
+      }
+
+      .project-layout {
+        padding: var(--space-3);
+      }
+
+      .project-fact {
+        grid-template-columns: 105px 1fr;
+      }
+
+      .toolkit-group {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .beyond-list li {
+        grid-template-columns: 1fr;
+        gap: 6px;
       }
 
       .contact-panel {
-        padding: 28px;
+        padding: var(--space-3);
       }
 
       .footer-inner {
@@ -899,14 +1180,77 @@
       }
     }
 
+    @media (max-width: 380px) {
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      .brand {
+        gap: 8px;
+        font-size: 0.78rem;
+      }
+
+      .brand-mark {
+        width: 31px;
+        height: 31px;
+      }
+
+      .nav-links {
+        gap: 8px;
+      }
+
+      .nav-links a {
+        font-size: 0.76rem;
+      }
+
+      .theme-toggle {
+        width: 36px;
+        height: 36px;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero-actions .button {
+        padding-inline: 14px;
+      }
+    }
+
+    /* All animation is disabled for reduced-motion preferences. */
     @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
       *,
       *::before,
       *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .js .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .neuron-art .draw-line {
+        stroke-dasharray: 600;
+        stroke-dashoffset: 600;
+        animation: draw-neuron 2.2s ease-out forwards;
+      }
+
+      .neuron-art .draw-line.delay {
+        animation-delay: 0.35s;
+      }
+
+      @keyframes draw-neuron {
+        to {
+          stroke-dashoffset: 0;
+        }
       }
     }
   </style>
@@ -917,28 +1261,44 @@
   <div class="nav-wrap">
     <nav class="container" aria-label="Main navigation">
       <a class="brand" href="#home" aria-label="Vipul Goyal home">
-        <span class="brand-mark">VG</span>
+        <span class="brand-mark" aria-hidden="true">VG</span>
         <span>Vipul Goyal</span>
       </a>
 
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#project">Project</a></li>
-        <li><a href="#toolkit">Toolkit</a></li>
-        <li><a class="nav-contact" href="#contact">Contact</a></li>
-      </ul>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#project">Project</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch to light theme"
+          aria-pressed="false"
+          title="Toggle colour theme"
+        >
+          <!-- Icon is updated by JavaScript -->
+          <svg id="theme-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+          </svg>
+        </button>
+      </div>
     </nav>
   </div>
 
   <main>
     <!-- Hero -->
-    <section class="hero" id="home">
+    <section class="hero reveal" id="home">
       <div class="container hero-grid">
         <div class="hero-content">
           <div class="hero-status">
-            <span class="status-dot"></span>
+            <span class="status-dot" aria-hidden="true"></span>
             RESEARCH PORTFOLIO
           </div>
 
@@ -961,39 +1321,17 @@
             <a class="button button-primary" href="#research">
               Explore research <span aria-hidden="true">↗</span>
             </a>
-            <a class="button button-secondary" href="#contact">
+            <a class="button" href="#contact">
               Get in touch
             </a>
           </div>
         </div>
 
-        <!-- Decorative branching neuron illustration, not experimental data -->
+        <!-- Custom neuron: soma, dendrites, axon and terminals -->
         <div class="hero-visual" aria-hidden="true">
-          <div class="visual-glow"></div>
-
-          <svg class="neuron-art" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
-            <g class="fine-branch">
-              <path d="M185 185 C145 150 120 115 105 70" />
-              <path d="M145 145 L85 130 L55 90" />
-              <path d="M125 115 L135 65" />
-              <path d="M155 155 L185 95 L175 55" />
-
-              <path d="M225 180 C265 145 290 110 310 65" />
-              <path d="M270 140 L330 125 L365 85" />
-              <path d="M295 110 L290 55" />
-              <path d="M255 155 L240 95 L260 55" />
-
-              <path d="M185 225 C145 255 120 290 100 345" />
-              <path d="M145 260 L85 275 L55 320" />
-              <path d="M120 295 L130 355" />
-
-              <path d="M225 230 C265 260 290 300 315 350" />
-              <path d="M270 270 L335 285 L370 325" />
-              <path d="M295 305 L285 365" />
-            </g>
-
-            <g class="branch">
-              <path d="M185 185 C155 165 145 145 125 115 C105 85 95 55 75 35" />
+          <svg class="neuron-art" viewBox="0 0 440 420" xmlns="http://www.w3.org/2000/svg">
+            <g class="dendrite draw-line">
+              <path d="M190 185 C160 165 145 145 125 115 C105 85 95 55 75 35" />
               <path d="M125 115 L65 120 L35 95" />
               <path d="M145 145 L175 95 L165 55" />
               <path d="M185 185 L175 145" />
@@ -1002,27 +1340,48 @@
               <path d="M295 105 L350 115 L385 90" />
               <path d="M275 135 L245 85 L255 45" />
               <path d="M225 185 L245 145" />
-
-              <path d="M185 225 C155 250 140 280 120 310 C100 340 85 365 65 385" />
-              <path d="M120 310 L65 300 L35 330" />
-              <path d="M140 280 L170 330 L160 375" />
-
-              <path d="M225 225 C255 250 275 280 295 310 C315 340 335 365 355 385" />
-              <path d="M295 310 L350 300 L385 330" />
-              <path d="M275 280 L245 330 L255 375" />
-
-              <path d="M210 220 C210 260 210 300 210 345" />
             </g>
 
+            <g class="fine-branch">
+              <path d="M105 70 L80 55 L55 60" />
+              <path d="M85 130 L55 145 L35 140" />
+              <path d="M135 65 L120 40" />
+              <path d="M175 95 L195 75" />
+              <path d="M310 65 L330 45" />
+              <path d="M365 85 L400 70" />
+              <path d="M350 115 L385 135" />
+              <path d="M245 85 L225 60" />
+            </g>
+
+            <g class="axon draw-line delay">
+              <path d="M220 235 C220 270 220 300 220 340 C220 365 220 380 220 395" />
+            </g>
+
+            <g class="axon-branch">
+              <path d="M220 300 C190 320 170 340 150 370" />
+              <path d="M220 330 C250 345 270 365 290 390" />
+              <path d="M220 355 C195 370 185 385 175 405" />
+            </g>
+
+            <!-- Myelin segments along the axon -->
             <g>
-              <ellipse class="cell" cx="210" cy="205" rx="48" ry="42" />
-              <ellipse class="cell" cx="210" cy="205" rx="28" ry="25" />
-              <circle class="nucleus" cx="210" cy="205" r="8" />
+              <rect class="myelin" x="208" y="260" width="24" height="28" rx="11" />
+              <rect class="myelin" x="208" y="305" width="24" height="28" rx="11" />
+              <rect class="myelin" x="208" y="350" width="24" height="28" rx="11" />
             </g>
 
-            <g class="label">
-              <text x="25" y="405">NEURAL CELL</text>
-              <text x="280" y="405">BRANCHING</text>
+            <!-- Soma and nucleus -->
+            <g>
+              <path class="soma" d="M190 185 C175 195 170 215 180 232 C190 248 215 252 235 240 C253 229 258 207 247 190 C235 172 208 172 190 185 Z" />
+              <circle class="nucleus" cx="215" cy="211" r="10" />
+            </g>
+
+            <!-- Axon terminals -->
+            <g>
+              <circle class="terminal" cx="220" cy="395" r="5" />
+              <circle class="terminal" cx="150" cy="370" r="5" />
+              <circle class="terminal" cx="290" cy="390" r="5" />
+              <circle class="terminal" cx="175" cy="405" r="5" />
             </g>
           </svg>
         </div>
@@ -1030,7 +1389,7 @@
     </section>
 
     <!-- About -->
-    <section class="section" id="about">
+    <section class="section reveal" id="about">
       <div class="container">
         <div class="section-heading">
           <span class="eyebrow">01 / About</span>
@@ -1063,7 +1422,7 @@
             </p>
           </div>
 
-          <div class="focus-card">
+          <div class="focus-panel">
             <h3>Questions I want to explore</h3>
             <ul class="focus-list">
               <li>How does the brain respond to traumatic injury?</li>
@@ -1077,11 +1436,11 @@
       </div>
     </section>
 
-    <!-- Research directions -->
-    <section class="section" id="research">
+    <!-- Research interests: cards are intentionally retained here only -->
+    <section class="section reveal" id="research">
       <div class="container">
         <div class="section-heading">
-          <span class="eyebrow">02 / Research directions</span>
+          <span class="eyebrow">02 / Research interests</span>
           <h2>From current work to future questions.</h2>
           <p>
             My interests connect an ongoing neuroscience project with questions
@@ -1130,8 +1489,8 @@
       </div>
     </section>
 
-    <!-- Experience -->
-    <section class="section" id="experience">
+    <!-- Experience: vertical timeline -->
+    <section class="section reveal" id="experience">
       <div class="container">
         <div class="section-heading">
           <span class="eyebrow">03 / Experience</span>
@@ -1142,16 +1501,16 @@
           </p>
         </div>
 
-        <div class="experience-list">
-          <article class="experience-card">
-            <div class="experience-meta">
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-meta">
               RESEARCH PROJECT<br />
               IISER PUNE
             </div>
 
-            <div class="experience-content">
+            <div class="timeline-content">
               <h3>NeuroSCAPE Lab</h3>
-              <div class="experience-place">
+              <div class="timeline-place">
                 Traumatic brain injury · Hippocampal focus
               </div>
 
@@ -1176,15 +1535,15 @@
             </div>
           </article>
 
-          <article class="experience-card">
-            <div class="experience-meta">
+          <article class="timeline-item">
+            <div class="timeline-meta">
               INTERNSHIP<br />
               DEVICE DEVELOPMENT
             </div>
 
-            <div class="experience-content">
+            <div class="timeline-content">
               <h3>Pravid Lab Private Limited</h3>
-              <div class="experience-place">
+              <div class="timeline-place">
                 CCI impactor design and testing
               </div>
 
@@ -1207,15 +1566,15 @@
             </div>
           </article>
 
-          <article class="experience-card">
-            <div class="experience-meta">
+          <article class="timeline-item">
+            <div class="timeline-meta">
               REMOTE INTERNSHIP<br />
               MOLECULAR BIOLOGY
             </div>
 
-            <div class="experience-content">
+            <div class="timeline-content">
               <h3>Mathi LifeSciences</h3>
-              <div class="experience-place">
+              <div class="timeline-place">
                 Molecular biology and bioinformatics
               </div>
 
@@ -1230,75 +1589,94 @@
       </div>
     </section>
 
-    <!-- Project -->
-    <section class="section" id="project">
+    <!-- Featured project: full-width text and media placeholder -->
+    <section class="section reveal" id="project">
       <div class="container">
         <div class="section-heading">
           <span class="eyebrow">04 / Project</span>
           <h2>A closer look at my current work.</h2>
         </div>
 
-        <article class="project-card">
-          <div class="project-topline">
+        <div class="project-layout">
+          <div class="project-copy">
             <span class="project-tag">Ongoing research</span>
-            <span class="muted mono">TBI · CCI · Hippocampus</span>
+
+            <h3>
+              Hippocampal injury and behavioural outcomes after traumatic brain
+              injury
+            </h3>
+
+            <p>
+              This project investigates the effects of traumatic brain injury
+              in a mouse model, with particular interest in the hippocampus and
+              behavioural changes following injury. The study combines a
+              controlled cortical impact model with behavioural assessment and
+              tissue analysis.
+            </p>
+
+            <div class="project-facts">
+              <div class="project-fact">
+                <span>Model</span>
+                <strong>Mouse CCI model of TBI</strong>
+              </div>
+
+              <div class="project-fact">
+                <span>Region</span>
+                <strong>Hippocampus</strong>
+              </div>
+
+              <div class="project-fact">
+                <span>Assays</span>
+                <strong>OFT and EZM</strong>
+              </div>
+            </div>
+
+            <p class="project-note">
+              The project is ongoing. Results and conclusions will be added
+              when the analysis is complete.
+            </p>
           </div>
 
-          <h3>
-            Hippocampal injury and behavioural outcomes after traumatic brain
-            injury
-          </h3>
-
-          <p class="project-description">
-            This project investigates the effects of traumatic brain injury
-            in a mouse model, with particular interest in the hippocampus and
-            behavioural changes following injury. The study combines a
-            controlled cortical impact model with behavioural assessment and
-            tissue analysis.
-          </p>
-
-          <div class="project-details">
-            <div class="project-detail">
-              <span>Model</span>
-              <strong>Mouse CCI model of TBI</strong>
-            </div>
-
-            <div class="project-detail">
-              <span>Region of interest</span>
-              <strong>Hippocampus</strong>
-            </div>
-
-            <div class="project-detail">
-              <span>Behavioural assays</span>
-              <strong>OFT and EZM</strong>
+          <div class="project-media" aria-label="Project image placeholder">
+            <div class="project-media-inner">
+              <!-- Replace this placeholder with your own approved project image:
+                   <img src="images/your-histology-image.png" alt="Description of the image" />
+              -->
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <rect x="8" y="10" width="48" height="44" rx="4"></rect>
+                <circle cx="23" cy="25" r="5"></circle>
+                <path d="M12 47l15-14 9 8 8-7 8 13"></path>
+              </svg>
+              <strong>Project image</strong>
+              <p>
+                Add an approved microscopy image, project photograph,
+                or labelled schematic here.
+              </p>
             </div>
           </div>
-
-          <p class="project-note">
-            The project is ongoing. Results and conclusions will be added
-            when the analysis is complete.
-          </p>
-        </article>
+        </div>
       </div>
     </section>
 
-    <!-- Toolkit -->
-    <section class="section" id="toolkit">
+    <!-- Technical toolkit: category headings and compact chips -->
+    <section class="section reveal" id="toolkit">
       <div class="container">
         <div class="section-heading">
-          <span class="eyebrow">05 / Toolkit</span>
-          <h2>Methods, skills and training.</h2>
+          <span class="eyebrow">05 / Technical toolkit</span>
+          <h2>Methods and skills.</h2>
           <p>
             Experimental and analytical methods I have worked with or received
             training in.
           </p>
         </div>
 
-        <div class="toolkit-grid">
-          <article class="toolkit-card">
-            <h3>Molecular biology</h3>
-            <p>Hands-on laboratory techniques.</p>
-            <ul class="tag-list">
+        <div class="toolkit-groups">
+          <div class="toolkit-group">
+            <div>
+              <h3>Molecular biology</h3>
+              <p>Laboratory techniques</p>
+            </div>
+            <ul class="chip-list">
               <li>PCR</li>
               <li>DNA subcloning</li>
               <li>TA cloning</li>
@@ -1306,12 +1684,14 @@
               <li>Bacterial transformation</li>
               <li>Plasmid isolation</li>
             </ul>
-          </article>
+          </div>
 
-          <article class="toolkit-card">
-            <h3>Neuroscience and animal work</h3>
-            <p>Methods associated with neuroscience research and training.</p>
-            <ul class="tag-list">
+          <div class="toolkit-group">
+            <div>
+              <h3>Neuroscience</h3>
+              <p>Animal work and tissue methods</p>
+            </div>
+            <ul class="chip-list">
               <li>Mouse handling</li>
               <li>Systemic injections</li>
               <li>Transcardial perfusion</li>
@@ -1319,93 +1699,106 @@
               <li>Stereotaxic methods</li>
               <li>Microscopy</li>
             </ul>
-          </article>
+          </div>
 
-          <article class="toolkit-card">
-            <h3>Computational and analytical</h3>
-            <p>Tools for working with biological data.</p>
-            <ul class="tag-list">
+          <div class="toolkit-group">
+            <div>
+              <h3>Computational</h3>
+              <p>Biological data and analysis</p>
+            </div>
+            <ul class="chip-list">
               <li>Python</li>
               <li>Bioinformatics</li>
               <li>Data analysis</li>
               <li>Scientific literature</li>
             </ul>
-          </article>
-
-          <article class="toolkit-card">
-            <h3>Workshops and training</h3>
-            <ul class="training-list">
-              <li>Animal handling training at IISER Pune</li>
-              <li>Neuroscience and brain mapping workshop at IISc / Pravega</li>
-              <li>Introduction to Biology of Cancer — Johns Hopkins / Coursera</li>
-              <li>Stem Cells and Regenerative Medicine workshop</li>
-              <li>Hands-on TA cloning training</li>
-            </ul>
-          </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Beyond the lab -->
-    <section class="section" id="beyond">
+    <!-- Training: simple list with right-aligned arrows -->
+    <section class="section reveal" id="training">
       <div class="container">
         <div class="section-heading">
-          <span class="eyebrow">06 / Beyond the lab</span>
+          <span class="eyebrow">06 / Training</span>
+          <h2>Workshops and learning.</h2>
+        </div>
+
+        <ul class="training-list">
+          <li>
+            <span>Animal handling training — IISER Pune</span>
+            <a href="#training" aria-label="Animal handling training at IISER Pune">↗</a>
+          </li>
+          <li>
+            <span>Neuroscience and brain mapping workshop — IISc / Pravega</span>
+            <a href="#training" aria-label="Neuroscience and brain mapping workshop">↗</a>
+          </li>
+          <li>
+            <span>Introduction to Biology of Cancer — Johns Hopkins / Coursera</span>
+            <a href="#training" aria-label="Introduction to Biology of Cancer course">↗</a>
+          </li>
+          <li>
+            <span>Stem Cells and Regenerative Medicine workshop</span>
+            <a href="#training" aria-label="Stem Cells and Regenerative Medicine workshop">↗</a>
+          </li>
+          <li>
+            <span>Hands-on TA cloning training</span>
+            <a href="#training" aria-label="TA cloning training">↗</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Beyond the lab -->
+    <section class="section reveal" id="beyond">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">07 / Beyond the lab</span>
           <h2>Writing, communication and community.</h2>
         </div>
 
-        <div class="beyond-grid">
-          <article class="beyond-card">
-            <h3>Writing</h3>
+        <ul class="beyond-list">
+          <li>
+            <strong>Writing</strong>
             <p>
               Contributed to the literary anthology
               <em>The Soul’s Voyage to Love’s Crescendo</em>, exploring
               creative writing beyond scientific work.
             </p>
-            <span class="beyond-label">Literary contribution</span>
-          </article>
-
-          <article class="beyond-card">
-            <h3>Hindi Club</h3>
+          </li>
+          <li>
+            <strong>Hindi Club</strong>
             <p>
               Served as General Coordinator, contributing to event planning,
               coordination, and the organisation of campus activities.
             </p>
-            <span class="beyond-label">Leadership and coordination</span>
-          </article>
-
-          <article class="beyond-card">
-            <h3>Karavaan</h3>
+          </li>
+          <li>
+            <strong>Karavaan</strong>
             <p>
-              Collaborated with Karavaan on student events, creative
-              initiatives, and sponsorship-related coordination.
+              Collaborated on student events, creative initiatives,
+              and sponsorship-related coordination.
             </p>
-            <span class="beyond-label">Creative collaboration</span>
-          </article>
-
-          <article class="beyond-card">
-            <h3>Scientific communication</h3>
+          </li>
+          <li>
+            <strong>Scientific communication</strong>
             <p>
               Interested in making scientific ideas accessible through
-              clear writing, visual communication, and thoughtful
-              presentation.
+              clear writing, visual communication, and thoughtful presentation.
             </p>
-            <span class="beyond-label">Communication</span>
-          </article>
-        </div>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- Contact -->
-    <section class="section" id="contact">
+    <section class="section reveal" id="contact">
       <div class="container">
         <div class="contact-panel">
-          <span class="eyebrow">07 / Contact</span>
+          <span class="eyebrow">08 / Contact</span>
 
-          <h2>
-            Let’s connect<br />
-            <span class="accent">over science.</span>
-          </h2>
+          <h2>Let’s connect<br />over science.</h2>
 
           <p>
             I’m interested in connecting with researchers and students working
@@ -1415,7 +1808,7 @@
 
           <div class="contact-links">
             <a class="contact-link" href="mailto:vipul.goyal@students.iiserpune.ac.in">
-              <span>↗</span> Email
+              Email ↗
             </a>
 
             <a
@@ -1424,7 +1817,7 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span>↗</span> LinkedIn
+              LinkedIn ↗
             </a>
 
             <a
@@ -1433,7 +1826,7 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span>↗</span> GitHub
+              GitHub ↗
             </a>
           </div>
         </div>
@@ -1441,20 +1834,155 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
     <div class="container footer-inner">
-      <p class="footer-copy">
-        © <span id="year">2026</span> Vipul Goyal
-      </p>
+      <div class="footer-main">
+        <p class="footer-copy">© <span id="year">2026</span> Vipul Goyal</p>
+        <p class="footer-updated">Last updated: November 2026</p>
+      </div>
 
-      <p class="footer-focus">
-        Neural systems · Cellular repair · Disease biology
-      </p>
+      <div class="footer-links">
+        <a href="mailto:vipul.goyal@students.iiserpune.ac.in">Email</a>
+        <a href="https://github.com/vipulgoyal05" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/vipul-goyal-832786384/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
     </div>
   </footer>
 
   <script>
+    // Enable progressive enhancement for scroll reveals.
+    document.documentElement.classList.add("js");
+
+    // Update copyright year automatically.
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    /* -------------------------------------------------------
+       Theme toggle:
+       - Uses system preference by default.
+       - Stores explicit user choice in localStorage.
+       ------------------------------------------------------- */
+
+    const themeButton = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+    const root = document.documentElement;
+    const themeStorageKey = "vipul-portfolio-theme";
+
+    function getSystemTheme() {
+      return window.matchMedia("(prefers-color-scheme: light)").matches
+        ? "light"
+        : "dark";
+    }
+
+    function getSavedTheme() {
+      try {
+        return localStorage.getItem(themeStorageKey);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function setTheme(theme, saveChoice = false) {
+      root.dataset.theme = theme;
+
+      const isLight = theme === "light";
+
+      themeButton.setAttribute("aria-pressed", String(isLight));
+      themeButton.setAttribute(
+        "aria-label",
+        isLight ? "Switch to dark theme" : "Switch to light theme"
+      );
+      themeButton.setAttribute(
+        "title",
+        isLight ? "Switch to dark theme" : "Switch to light theme"
+      );
+
+      // Sun icon when currently light; moon icon when currently dark.
+      themeIcon.innerHTML = isLight
+        ? '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>'
+        : '<path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.6 8.6 0 1 0 20.5 14.2Z"></path>';
+
+      if (saveChoice) {
+        try {
+          localStorage.setItem(themeStorageKey, theme);
+        } catch (error) {
+          // Theme still works for this page view if storage is unavailable.
+        }
+      }
+    }
+
+    setTheme(getSavedTheme() || getSystemTheme());
+
+    themeButton.addEventListener("click", () => {
+      const currentTheme = root.dataset.theme || getSystemTheme();
+      const nextTheme = currentTheme === "light" ? "dark" : "light";
+      setTheme(nextTheme, true);
+    });
+
+    /* -------------------------------------------------------
+       Scroll reveal:
+       - Each section fades and rises once.
+       - Reduced-motion users see sections immediately.
+       ------------------------------------------------------- */
+
+    const revealElements = document.querySelectorAll(".reveal");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if ("IntersectionObserver" in window && !reducedMotion) {
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+      revealElements.forEach((element) => revealObserver.observe(element));
+    } else {
+      revealElements.forEach((element) => element.classList.add("is-visible"));
+    }
+
+    /* -------------------------------------------------------
+       Active navigation:
+       Highlight the navigation link for the visible section.
+       ------------------------------------------------------- */
+
+    const navLinks = document.querySelectorAll(".nav-links a[href^='#']");
+    const sections = document.querySelectorAll("main section[id]");
+
+    if ("IntersectionObserver" in window) {
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            const currentId = entry.target.id;
+
+            navLinks.forEach((link) => {
+              const isCurrent = link.getAttribute("href") === "#" + currentId;
+
+              if (isCurrent) {
+                link.setAttribute("aria-current", "location");
+              } else {
+                link.removeAttribute("aria-current");
+              }
+            });
+          });
+        },
+        {
+          rootMargin: "-25% 0px -60% 0px",
+          threshold: 0
+        }
+      );
+
+      sections.forEach((section) => sectionObserver.observe(section));
+    }
   </script>
 </body>
 </html>
